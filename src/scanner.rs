@@ -31,7 +31,10 @@ impl Scanner {
             self.scan_token();
         }
 
+        let eof_line = self.tokens.last().map(|t| t.line).unwrap_or(1);
+
         self.start = self.current;
+        self.line = eof_line;
         self.add(TokenType::Eof);
     }
 
